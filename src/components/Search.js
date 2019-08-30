@@ -106,7 +106,7 @@ const Search = props => {
       ref={formRef}
     >
       <Button type="submit" barOpened={barOpened}>
-        <i class="material-icons">search</i>
+        <i className="material-icons">search</i>
       </Button>
       <Input
         onChange={e => setInput(e.target.value)}

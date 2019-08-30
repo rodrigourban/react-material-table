@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Row from "./Row/Row";
 
 const Container = styled.tr`
   text-align: center;
@@ -10,20 +11,15 @@ const Container = styled.tr`
   }
 `;
 
-const Td = styled.td`
-  width: 200px;
-`;
-
-const Element = props => {
+const Rows = props => {
   const fields = Object.keys(props.children);
-  console.log(fields);
   return (
     <Container>
       {fields.map((el, index) => (
-        <Td key={index}>{props.children[el]}</Td>
+        <Row key={index}>{props.children[el]}</Row>
       ))}
     </Container>
   );
 };
 
-export default Element;
+export default Rows;

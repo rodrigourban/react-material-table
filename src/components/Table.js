@@ -2,7 +2,7 @@ import React from "react";
 import data from "../data-example";
 import styled from "styled-components";
 import Aux from "../hoc/AuxHoc";
-import Element from "./Element";
+import Element from "./Rows/Rows";
 import Search from "./Search";
 import Column from "./Columns/Columns";
 import Footer from "./Footer/Footer";

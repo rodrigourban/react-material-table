@@ -29,8 +29,8 @@ const footer = props => (
     </Element>
     <Element>1-10 of 100 </Element>
     <Element>
-      <i class="material-icons">chevron_left</i>
-      <i class="material-icons">chevron_right</i>
+      <i className="material-icons">chevron_left</i>
+      <i className="material-icons">chevron_right</i>
     </Element>
   </Container>
 );
