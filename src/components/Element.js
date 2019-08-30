@@ -4,7 +4,6 @@ import styled from "styled-components";
 const Container = styled.tr`
   text-align: center;
   height: 54px;
-
   background-color: white;
   :hover {
     background-color: #ddd;
@@ -12,7 +11,7 @@ const Container = styled.tr`
 `;
 
 const Td = styled.td`
-  width: 100px;
+  width: 200px;
 `;
 
 const Element = props => {

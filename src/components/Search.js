@@ -1,13 +1,14 @@
-import React, { useState, useRef, useEffect } from 'react'
-import styled from 'styled-components'
+import React, { useState, useRef, useEffect } from "react";
+import styled from "styled-components";
 
 const Form = styled.form`
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 20px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  background-color: #E85A4F;
+  background-color: #e85a4f;
   /* Change width of the form depending if the bar is opened or not */
   width: ${props => (props.barOpened ? "30rem" : "2.2rem")};
   /* If bar opened, normal cursor on the whole form. If closed, show pointer on the whole form so user knows he can click to open it */
@@ -49,7 +50,7 @@ const Button = styled.button`
 const Search = props => {
   const [input, setInput] = useState("");
   const [barOpened, setBarOpened] = useState(false);
-  const [time, setTime] = useState(null)
+  const [time, setTime] = useState(null);
   const formRef = useRef();
   const inputFocus = useRef();
 
@@ -63,22 +64,24 @@ const Search = props => {
   }, []);
 
   const handleInput = e => {
-    setTime(clearTimeout(time))
-    setTime(setTimeout(function () {
-      console.log("Termino de escribir")
-    }, 500))
-  }
+    setTime(clearTimeout(time));
+    setTime(
+      setTimeout(function() {
+        console.log("Termino de escribir");
+      }, 500)
+    );
+  };
 
   // When user clicks outside of the form, set bar opened to false, to close it
   const handleClick = e => {
     if (formRef.current.contains(e.target)) {
       // click was inside form, do nothing
-      document.addEventListener("keyup", handleInput)
+      document.addEventListener("keyup", handleInput);
 
       return;
     }
     console.log("Click outside the form, close it");
-    document.removeEventListener("keyup", handleInput)
+    document.removeEventListener("keyup", handleInput);
     setBarOpened(false);
   };
 
@@ -103,9 +106,7 @@ const Search = props => {
       ref={formRef}
     >
       <Button type="submit" barOpened={barOpened}>
-        <i class="material-icons">
-          search
-        </i>
+        <i class="material-icons">search</i>
       </Button>
       <Input
         onChange={e => setInput(e.target.value)}
@@ -115,7 +116,7 @@ const Search = props => {
         placeholder="Type to search..."
       />
     </Form>
-  )
-}
+  );
+};
 
 export default Search;
