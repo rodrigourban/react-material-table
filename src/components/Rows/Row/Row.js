@@ -3,7 +3,6 @@ import styled from "styled-components";
 
 const Td = styled.td`
   width: 200px;
-
   &.number {
     text-align: right;
   }

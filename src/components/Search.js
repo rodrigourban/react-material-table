@@ -50,7 +50,7 @@ const Button = styled.button`
 const Search = props => {
   const [input, setInput] = useState("");
   const [barOpened, setBarOpened] = useState(false);
-  const [time, setTime] = useState(null);
+  const [timet, setTimet] = useState(null);
   const formRef = useRef();
   const inputFocus = useRef();
 
@@ -63,12 +63,20 @@ const Search = props => {
     };
   }, []);
 
-  const handleInput = e => {
-    setTime(clearTimeout(time));
-    setTime(
+  const handleInput = text => {
+    //Change the value
+    setInput(text);
+    //If there was a timeout, clear it
+    setTimet(clearTimeout(timet));
+    //Set a timeout with a function that'll called
+    //when the user stops typing
+    //only if theres is text to search
+    setTimet(
       setTimeout(function() {
-        console.log("Termino de escribir");
-      }, 500)
+        if (text) {
+          console.log("Should call API fetch");
+        }
+      }, 2000)
     );
   };
 
@@ -76,12 +84,9 @@ const Search = props => {
   const handleClick = e => {
     if (formRef.current.contains(e.target)) {
       // click was inside form, do nothing
-      document.addEventListener("keyup", handleInput);
-
       return;
     }
-    console.log("Click outside the form, close it");
-    document.removeEventListener("keyup", handleInput);
+    //Click outside the form, close it
     setBarOpened(false);
   };
 
@@ -109,7 +114,7 @@ const Search = props => {
         <i className="material-icons">search</i>
       </Button>
       <Input
-        onChange={e => setInput(e.target.value)}
+        onChange={e => handleInput(e.target.value)}
         ref={inputFocus}
         value={input}
         barOpened={barOpened}

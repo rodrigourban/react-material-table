@@ -11,7 +11,7 @@ const Container = styled.tr`
 
 const columns = props => {
   const elements = props.elements.map((el, index) => {
-    if (el.name != "id" && el.name != "estado" && el.name != "creador") {
+    if (el.name !== "id" && el.name !== "creador") {
       return (
         <Column
           key={index}

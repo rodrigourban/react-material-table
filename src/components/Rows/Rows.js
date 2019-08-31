@@ -18,8 +18,7 @@ const Rows = props => {
   return (
     <Container>
       {fields.map((el, index) => {
-        console.log(el);
-        if (el != "id" && el != "status" && el != "owner") {
+        if (el !== "id" && el !== "status" && el !== "owner") {
           return (
             <Row key={index} type={typeof props.children[el]}>
               {props.children[el]}
