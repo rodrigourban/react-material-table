@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useState } from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const Container = styled.footer`
@@ -14,25 +15,50 @@ const Element = styled.div`
   input {
     width: 10%;
   }
+
+  button {
+    outline: none;
+    border: none;
+    background: transparent;
+    cursor: pointer;
+  }
 `;
 
-const footer = props => (
-  <Container>
-    <Element>
-      Rows per page:{" "}
-      <select id="perpage">
-        <option value="10">10</option>
-        <option value="25">25</option>
-        <option value="50">50</option>
-        <option value="100">100</option>
-      </select>
-    </Element>
-    <Element>1-10 of 100 </Element>
-    <Element>
-      <i className="material-icons">chevron_left</i>
-      <i className="material-icons">chevron_right</i>
-    </Element>
-  </Container>
-);
+const Footer = props => {
+  return (
+    <Container>
+      <Element>
+        Rows per page:{" "}
+        <select id="perpage" onChange={e => props.onPageSize(e.target.value)}>
+          <option value="10">10</option>
+          <option value="25">25</option>
+          <option value="50">50</option>
+          <option value="100">100</option>
+        </select>
+      </Element>
+      <Element>
+        {props.pageTotal >= 0
+          ? `${props.pageShowing} of ${props.pageTotal}`
+          : null}
+      </Element>
+      <Element>
+        <button onClick={props.onPreviousPage}>
+          <i className="material-icons">chevron_left</i>
+        </button>
+        <button onClick={props.onNextPage}>
+          <i className="material-icons">chevron_right</i>
+        </button>
+      </Element>
+    </Container>
+  );
+};
 
-export default footer;
+Footer.propTypes = {
+  pageShowing: PropTypes.string.isRequired,
+  pageTotal: PropTypes.number.isRequired,
+  onNextPage: PropTypes.func,
+  onPreviosPage: PropTypes.func,
+  onPageSize: PropTypes.func
+};
+
+export default Footer;

@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
-
 const Form = styled.form`
   position: relative;
   display: flex;
@@ -74,7 +74,7 @@ const Search = props => {
     setTimet(
       setTimeout(function() {
         if (text) {
-          console.log("Should call API fetch");
+          props.onFilter(text);
         }
       }, 2000)
     );
@@ -93,10 +93,12 @@ const Search = props => {
   const onFormSubmit = e => {
     // When form submited, clear input, close the searchbar and do something with input
     e.preventDefault();
+    //If there was a timeout, clear it
+    setTimet(clearTimeout(timet));
     setInput("");
     setBarOpened(false);
     // After form submit, do what you want with the input value
-    console.log(`Form was submited with input: ${input}`);
+    props.onFilter(input);
   };
   return (
     <Form
@@ -122,6 +124,10 @@ const Search = props => {
       />
     </Form>
   );
+};
+
+Search.propTypes = {
+  onFilter: PropTypes.func.isRequired
 };
 
 export default Search;

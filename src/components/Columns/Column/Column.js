@@ -1,5 +1,6 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 
 const StyledColumn = styled.th`
   height: 56px;
@@ -22,17 +23,15 @@ const Icon = styled.i`
 
 const Column = props => {
   const [clicked, setClicked] = useState(false);
-  const columnRef = useRef();
 
   const handleClick = e => {
     setClicked(!clicked);
+    props.onSort(props.children, clicked);
   };
   const classes = clicked ? ["material-icons", "clicked"] : ["material-icons"];
   return (
     <StyledColumn
-      key={props.key}
       scope="col"
-      ref={columnRef}
       onClick={handleClick}
       clicked={clicked}
       className={props.type}
@@ -44,6 +43,12 @@ const Column = props => {
       {props.children}
     </StyledColumn>
   );
+};
+
+Column.propTypes = {
+  type: PropTypes.string.isRequired,
+  onSort: PropTypes.func,
+  sortable: PropTypes.bool
 };
 
 export default Column;

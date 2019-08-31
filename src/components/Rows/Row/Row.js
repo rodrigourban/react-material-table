@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 const Td = styled.td`
@@ -9,11 +10,11 @@ const Td = styled.td`
 `;
 
 const row = props => {
-  return (
-    <Td key={props.index} className={props.type}>
-      {props.children}
-    </Td>
-  );
+  return <Td className={props.type}>{props.children}</Td>;
+};
+
+row.propTypes = {
+  type: PropTypes.string.isRequired
 };
 
 export default row;

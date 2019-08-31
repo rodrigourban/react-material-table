@@ -1,6 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
-import Search from "../Search";
+import Search from "../Search/Search";
 
 const Header = styled.div`
   display: flex;
@@ -18,9 +19,13 @@ const header = props => {
   return (
     <Header>
       <Title>{props.children}</Title>
-      <Search />
+      <Search onFilter={props.onFilter} />
     </Header>
   );
 };
 
+header.propTypes = {
+  children: PropTypes.string.isRequired,
+  onFilter: PropTypes.func.isRequired
+};
 export default header;

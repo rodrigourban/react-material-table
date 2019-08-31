@@ -1,7 +1,7 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 import Column from "./Column/Column";
-
 const Container = styled.tr`
   text-align: center;
   th:first-child {
@@ -16,7 +16,7 @@ const columns = props => {
         <Column
           key={index}
           sortable={el.sortable}
-          sortMethod={() => console.log("Sorting")}
+          onSort={props.onSort}
           type={el.type}
         >
           {el.name}
@@ -25,7 +25,16 @@ const columns = props => {
     }
     return null;
   });
-  return <Container>{elements}</Container>;
+  return (
+    <thead>
+      <Container>{elements}</Container>
+    </thead>
+  );
+};
+
+columns.propTypes = {
+  elements: PropTypes.array.isRequired,
+  onSort: PropTypes.func
 };
 
 export default columns;
