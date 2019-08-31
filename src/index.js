@@ -13,13 +13,50 @@ const Container = styled.main`
   background-color: #ccc;
   font-family: "Roboto", sans-serif;
 `;
+const ActionContainer = styled.div`
+  display: flex;
+`;
+
+const ActionButton = styled.div`
+  width: 25px;
+  height: 25px;
+  border-radius: 2px;
+  :hover {
+    cursor: pointer;
+    span {
+      display: block;
+    }
+  }
+  i {
+    width: 25px;
+    height: 25px;
+    border: none;
+  }
+  span {
+    display: none;
+    position: absolute;
+    margin: -25px 0px 0px -50px;
+    z-index: 2;
+    background-color: black;
+    color: white;
+    padding: 2px;
+    border-radius: 4px;
+  }
+`;
 
 class App extends React.Component {
+  state = {
+    content: data
+  };
+
+  componentDidMount() {
+    this.createActions();
+  }
+
   sort = (column, type) => {
     //Here you should put your sorted function
     //Type: false -> DESC
     //Type: true -> ASC
-
     console.log(
       `Ordenando la columna ${column} de manera ${type ? "ASC" : "DESC"}`
     );
@@ -40,13 +77,52 @@ class App extends React.Component {
     console.log(`Change to page ${num}`);
   };
 
+  createActions() {
+    //Maps elements and adds the actions columns
+    //with the icon buttons
+    let _data = { ...this.state.content };
+    const newContent = _data.elements.map(el => {
+      const action = (
+        <ActionContainer>
+          <ActionButton onClick={() => console.log("here goes the callback")}>
+            <span>Vender articulo</span>
+            <i className="material-icons">add_shopping_cart</i>
+          </ActionButton>
+
+          <ActionButton onClick={() => console.log("here goes the callback")}>
+            <span>Editar articulo</span>
+            <i className="material-icons">edit</i>
+          </ActionButton>
+
+          <ActionButton onClick={() => console.log("here goes the callback")}>
+            <span>Agregar stock</span>
+            <i className="material-icons">note_add</i>
+          </ActionButton>
+
+          <ActionButton onClick={() => console.log("here goes the callback")}>
+            <span>Detalle stock</span>
+            <i className="material-icons">calendar_today</i>
+          </ActionButton>
+
+          <ActionButton onClick={() => console.log("here goes the callback")}>
+            <span>Borrar articulo</span>
+            <i className="material-icons">cancel</i>
+          </ActionButton>
+        </ActionContainer>
+      );
+      return { ...el, actions: action };
+    });
+    _data.elements = newContent;
+    this.setState({ content: _data });
+  }
+
   render() {
     return (
       <Container>
         <Table
           title="Example" //Table header
-          data={data.elements} //Table content
-          columns={data.columns} //Table columns
+          data={this.state.content.elements} //Table content
+          columns={this.state.content.columns} //Table columns
           totalElements={14} //Count of all the content
           pageSize={10} //Elements per page
           pageCurrent={1} //Current page

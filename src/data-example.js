@@ -8,8 +8,7 @@ const data = {
       price: 123.0,
       status: true,
       totalStock: 3,
-      owner: "rigo",
-      actions: "lalala"
+      owner: "rigo"
     },
     {
       id: 2,
@@ -19,8 +18,7 @@ const data = {
       price: 1500.2,
       status: true,
       totalStock: 2,
-      owner: "rigo",
-      actions: "lalala"
+      owner: "rigo"
     },
     {
       id: 3,
@@ -30,8 +28,7 @@ const data = {
       price: 300.0,
       status: true,
       totalStock: 5,
-      owner: "rigo",
-      actions: "lalala"
+      owner: "rigo"
     },
     {
       id: 6,
@@ -41,8 +38,7 @@ const data = {
       price: 3.0,
       status: true,
       totalStock: 3,
-      owner: "admin",
-      actions: "lalala"
+      owner: "admin"
     }
   ],
   columns: [
