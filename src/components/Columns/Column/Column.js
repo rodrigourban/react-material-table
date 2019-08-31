@@ -47,8 +47,8 @@ const Column = props => {
 
 Column.propTypes = {
   type: PropTypes.string.isRequired,
-  onSort: PropTypes.func,
-  sortable: PropTypes.bool
+  sortable: PropTypes.bool,
+  onSort: PropTypes.func
 };
 
 export default Column;

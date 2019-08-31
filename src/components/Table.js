@@ -55,7 +55,7 @@ const Table = props => {
       <TableContainer>
         <StyledTable>
           <Column elements={props.columns} onSort={props.onSort} />
-          <Rows content={props.data} />
+          <Rows content={props.data} onImageOpen={props.onImageOpen} />
         </StyledTable>
       </TableContainer>
       <Footer
@@ -88,7 +88,8 @@ Table.propTypes = {
   onFilter: PropTypes.func,
   onPreviousPage: PropTypes.func,
   onNextPage: PropTypes.func,
-  onPageSize: PropTypes.func
+  onPageSize: PropTypes.func,
+  onImageOpen: PropTypes.func
 };
 
 export default Table;

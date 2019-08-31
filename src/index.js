@@ -116,6 +116,10 @@ class App extends React.Component {
     this.setState({ content: _data });
   }
 
+  openImageModal = src => {
+    console.log(src);
+  };
+
   render() {
     return (
       <Container>
@@ -131,6 +135,7 @@ class App extends React.Component {
           onPageSize={this.pageSize} //Table size change function
           onNextPage={() => this.changePage(1 + 1)} //Pagination next page
           onPreviousPage={() => this.changePage(1 - 1)} //Pagination previous page
+          onImageOpen={this.openImageModal}
         />
       </Container>
     );

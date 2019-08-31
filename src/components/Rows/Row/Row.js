@@ -7,14 +7,28 @@ const Td = styled.td`
   &.number {
     text-align: right;
   }
+
+  img {
+    width: 100%;
+    height: 80px;
+  }
 `;
 
-const row = props => {
-  return <Td className={props.type}>{props.children}</Td>;
+const Row = props => {
+  if (props.id === "image") {
+    return (
+      <Td onClick={() => props.onImageOpen(props.children)}>
+        <img src={props.children} alt="Imagen de articulo" />
+      </Td>
+    );
+  } else {
+    return <Td className={props.type}>{props.children}</Td>;
+  }
 };
 
-row.propTypes = {
-  type: PropTypes.string.isRequired
+Row.propTypes = {
+  type: PropTypes.string.isRequired,
+  onImageOpen: PropTypes.func
 };
 
-export default row;
+export default Row;

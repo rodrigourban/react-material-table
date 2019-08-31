@@ -9,7 +9,7 @@ const Container = styled.tr`
   :hover {
     background-color: #ddd;
   }
-  td:first-child {
+  td:nth-child(2) {
     text-align: left;
   }
 `;
@@ -22,7 +22,12 @@ const Rows = props => {
         {fields.map((el, index) => {
           if (el !== "id" && el !== "status" && el !== "owner") {
             return (
-              <Row key={index} type={typeof rowKey[el]}>
+              <Row
+                key={index}
+                type={typeof rowKey[el]}
+                id={el}
+                onImageOpen={props.onImageOpen}
+              >
                 {rowKey[el]}
               </Row>
             );
@@ -36,7 +41,8 @@ const Rows = props => {
 };
 
 Rows.propTypes = {
-  children: PropTypes.object
+  children: PropTypes.object,
+  onImageOpen: PropTypes.func
 };
 
 export default Rows;

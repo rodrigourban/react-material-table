@@ -4,7 +4,7 @@ import styled from "styled-components";
 import Column from "./Column/Column";
 const Container = styled.tr`
   text-align: center;
-  th:first-child {
+  th:nth-child(2) {
     text-align: left;
   }
 `;
