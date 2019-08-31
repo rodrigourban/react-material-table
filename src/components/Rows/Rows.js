@@ -5,9 +5,11 @@ import Row from "./Row/Row";
 const Container = styled.tr`
   text-align: center;
   height: 54px;
-  background-color: white;
   :hover {
     background-color: #ddd;
+  }
+  td:first-child {
+    text-align: left;
   }
 `;
 
@@ -15,9 +17,17 @@ const Rows = props => {
   const fields = Object.keys(props.children);
   return (
     <Container>
-      {fields.map((el, index) => (
-        <Row key={index}>{props.children[el]}</Row>
-      ))}
+      {fields.map((el, index) => {
+        console.log(el);
+        if (el != "id" && el != "status" && el != "owner") {
+          return (
+            <Row key={index} type={typeof props.children[el]}>
+              {props.children[el]}
+            </Row>
+          );
+        }
+        return null;
+      })}
     </Container>
   );
 };

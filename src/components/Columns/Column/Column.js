@@ -4,6 +4,10 @@ import styled from "styled-components";
 const StyledColumn = styled.th`
   height: 56px;
   padding: 0px 16px;
+
+  &.number {
+    text-align: right;
+  }
 `;
 
 const Icon = styled.i`
@@ -22,9 +26,7 @@ const Column = props => {
 
   const handleClick = e => {
     setClicked(!clicked);
-    console.log("Sorted");
   };
-
   const classes = clicked ? ["material-icons", "clicked"] : ["material-icons"];
   return (
     <StyledColumn
@@ -33,6 +35,7 @@ const Column = props => {
       ref={columnRef}
       onClick={handleClick}
       clicked={clicked}
+      className={props.type}
     >
       {props.sortable ? (
         <Icon className={classes.join(" ")}>arrow_downward</Icon>
